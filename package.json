@@ -6,7 +6,7 @@
 	"main": "lib/index.js",
 	"name": "colony-test",
 	"readmeFilename": "README.md",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"dependencies": {
 		"colony-core": "0.0.1",
 		"lodash": "4.17.14"
