@@ -1,0 +1,15 @@
+# ignore the common tmp, debug, intermediate and ephemeral fellas
+*.DS_Store
+*.cache
+*.swp
+*~
+*.tmp
+*.zip
+/log
+
+# eliminate .idea files that we don't use or that we simply don't want to share
+.idea/watcherTasks.xml
+.idea/workspace.xml
+
+# npm modules that will be built dynamically
+node_modules

@@ -1,0 +1,36 @@
+{
+	"author": "Curt Elsasser",
+	"description": "A small set of NodeJS test functionality",
+	"homepage": "https://github.com/celsasser/colony-test.git#readme",
+	"license": "Apache-2.0",
+	"main": "lib/index.js",
+	"name": "colony-test",
+	"readmeFilename": "README.md",
+	"version": "0.0.1",
+	"dependencies": {
+		"colony-core": "0.0.1",
+		"lodash": "4.17.14"
+	},
+	"devDependencies": {
+		"eslint": "6.0.1",
+		"mocha": "6.1.4",
+		"pig-quality": "1.0.1",
+		"sinon": "7.3.2"
+	},
+	"keywords": [
+		"test",
+		"lib",
+		"colony"
+	],
+	"scripts": {
+		"lint": "eslint --config ./node_modules/pig-quality/server.eslintrc.json lib/**/*.js test/**/*.js",
+		"lint+fix": "eslint ./node_modules/pig-quality/server.eslintrc.json --fix lib/**/*.js test/**/*.js",
+		"test": "npm run test:unit",
+		"test:integration": "echo > /dev/null",
+		"test:unit": "mocha --recursive ./test/unit"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/celsasser/colony-test.git"
+	}
+}
