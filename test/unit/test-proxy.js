@@ -28,9 +28,33 @@ describe("test-proxy", function() {
 					throw new Error();
 				}
 			};
-			proxy.stub(object, "method", ()=>{});
+			const stub=proxy.stub(object, "method", ()=>{});
+			assert.strictEqual(stub.constructor.name, "Function");
 			assert.doesNotThrow(object.method);
 			assert.strictEqual(object.method.callCount, 1);
+		});
+	});
+
+	describe("stubDate", function() {
+		it("should properly stub the Date constructor", function() {
+			const date=new Date("2000-01-01T12:00:00.000Z"),
+				stub=proxy.stubDate(new Date("2000-01-01T12:00:00.000Z"));
+			assert.strictEqual(stub.constructor.name, "Object");
+			assert.deepEqual(new Date(), date);
+			proxy.unstub();
+			assert.notDeepEqual(new Date(), date);
+		});
+
+		it("should convert a string param to a date", function() {
+			proxy.stubDate("2000-01-01T12:00:00.000Z");
+			assert.deepEqual(new Date(), new Date("2000-01-01T12:00:00.000Z"));
+			proxy.unstub();
+		});
+
+		it("should used default date if no param specified", function() {
+			proxy.stubDate();
+			assert.deepEqual(new Date(), new Date("2000-01-01T00:00:00.000Z"));
+			proxy.unstub();
 		});
 	});
 
