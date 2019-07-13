@@ -6,15 +6,15 @@
 	"main": "lib/index.js",
 	"name": "colony-test",
 	"readmeFilename": "README.md",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"dependencies": {
-		"colony-core": "^1.x.x",
+		"colony-core": "^1.1.0",
 		"lodash": "4.17.14"
 	},
 	"devDependencies": {
 		"eslint": "6.0.1",
 		"mocha": "6.1.4",
-		"pig-quality": "^1.x.x",
+		"pig-quality": "^1.0.1",
 		"sinon": "7.3.2"
 	},
 	"keywords": [
