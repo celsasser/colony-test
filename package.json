@@ -8,7 +8,7 @@
 	"readmeFilename": "README.md",
 	"version": "1.0.3",
 	"dependencies": {
-		"colony-core": "^1.1.0",
+		"colony-core": "^1.1.1",
 		"lodash": "4.17.14"
 	},
 	"devDependencies": {
