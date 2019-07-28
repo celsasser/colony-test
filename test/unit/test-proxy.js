@@ -5,7 +5,7 @@
  */
 
 const assert=require("assert");
-const proxy=require("../../lib/proxy");
+const proxy=require("../../dist/proxy");
 
 describe("test-proxy", function() {
 	describe("spy", function() {

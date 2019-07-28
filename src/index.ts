@@ -4,13 +4,7 @@
  * @license MIT (see project's LICENSE file)
  */
 
-module.exports={
-	/**
-	 * @type {module:colony-test/assert}
-	 */
+module.exports = {
 	assert: require("./assert"),
-	/**
-	 * @type {module:colony-test/proxy}
-	 */
 	proxy: require("./proxy")
 };
