@@ -7,7 +7,7 @@
 const assert=require("assert");
 const proxy=require("../../dist/proxy");
 
-describe("test-proxy", function() {
+describe("proxy", function() {
 	describe("spy", function() {
 		it("should properly spy on a method", function() {
 			const object={

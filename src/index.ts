@@ -4,6 +4,8 @@
  * @license MIT (see project's LICENSE file)
  */
 
+import * as _assert from "./assert";
+import * as _proxy from "./proxy";
 
-export * from "./assert";
-export * from "./proxy";
+export const assert = _assert;
+export const proxy = _proxy;
