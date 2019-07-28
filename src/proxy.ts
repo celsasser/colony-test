@@ -10,13 +10,11 @@ const _ = require("lodash");
 const sinon = require("sinon");
 const assert = require("./assert");
 
-interface ObjectProperty {
-	count:number,
+type ObjectProperty = {
 	name:string,
 	object:{[index:string]:any},
-	value:any
+	values:any[]
 }
-
 
 let _stubs:SinonSpy[] = [];
 const _props:ObjectProperty[] = [];
@@ -88,27 +86,26 @@ export function unstub(functions?:SinonSpy[]) {
 }
 
 /**
- * Sets value for object[name] and retains the original value
+ * Sets value for object[name] and retains the previous value
  */
 export function setProperty(object:{[index:string]:any}, name:string, value:any) {
-	let instance = _.find(_props, (instance:ObjectProperty) => {
+	let instance:ObjectProperty = _.find(_props, (instance:ObjectProperty) => {
 		return instance.object === object && instance.name === name;
 	});
 	if(instance === undefined) {
 		instance = {
-			count: 0,
 			name,
 			object,
-			value: object[name]
+			values: []
 		};
 		_props.push(instance);
 	}
-	instance.count++;
+	instance.values.push(object[name]);
 	object[name] = value;
 }
 
 /**
- * Restores original value if ref count is 0
+ * Restores the previous version
  */
 export function restoreProperty(object:{[index:string]:any}, name:string) {
 	const index = _.findIndex(_props, (instance:ObjectProperty) => {
@@ -116,13 +113,14 @@ export function restoreProperty(object:{[index:string]:any}, name:string) {
 	});
 	assert.notStrictEqual(index, -1);
 	const instance = _props[index];
-	assert.truthy(instance.count > 0);
-	if(--instance.count === 0) {
-		if(instance.value === undefined) {
-			delete object[instance.name];
-		} else {
-			object[instance.name] = instance.value;
-		}
+	assert.notStrictEqual(instance.values.length, 0);
+	const value = instance.values.pop();
+	if(value === undefined) {
+		delete object[instance.name];
+	} else {
+		object[instance.name] = value;
+	}
+	if(instance.values.length === 0) {
 		_props.splice(index, 1);
 	}
 }

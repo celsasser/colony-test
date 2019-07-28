@@ -93,14 +93,14 @@ describe("test-proxy", function() {
 			assert.strictEqual(object.key, "value");
 		});
 
-		it("should not restore until reference count is 0", function() {
+		it("should properly restore stacked up overrides", function() {
 			const object={
 				key: "value"
 			};
 			proxy.setProperty(object, "key", "other");
 			proxy.setProperty(object, "key", "mother");
 			proxy.restoreProperty(object, "key");
-			assert.strictEqual(object.key, "mother");
+			assert.strictEqual(object.key, "other");
 			proxy.restoreProperty(object, "key");
 			assert.strictEqual(object.key, "value");
 		});

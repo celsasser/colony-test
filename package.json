@@ -6,15 +6,15 @@
 	"main": "dist/index.js",
 	"name": "colony-test",
 	"readmeFilename": "README.md",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"dependencies": {
 		"colony-core": "^1.1.1",
 		"lodash": "4.17.14"
 	},
 	"devDependencies": {
-		"@types/lodash": "4.14.108",
-		"@types/node": "^12.6.8",
-		"@types/sinon": "7.0.13",
+		"@types/lodash": "^4.14.108",
+		"@types/node": "^10.14.13",
+		"@types/sinon": "^7.0.13",
 		"mocha": "6.1.4",
 		"sinon": "7.3.2",
 		"tslint": "5.18.0",
@@ -27,8 +27,9 @@
 	],
 	"scripts": {
 		"build": "tsc -d",
-		"publish": "npm run publish && npm publish",
-		"test": "npm run test:unit"
+		"deploy": "npm run test && npm publish",
+		"test": "npm run build && npm run test:unit",
+		"test:unit": "mocha --recursive ./test/unit"
 	},
 	"repository": {
 		"type": "git",
