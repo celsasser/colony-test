@@ -7,18 +7,20 @@
 import * as _ from "lodash";
 import * as assert from "assert";
 
+// todo: convert to imports once colony-core is converted
 const mutation = require("colony-core").mutation.immutable;
 const type = require("colony-core").type;
 
+export {
+	doesNotThrow,
+	ifError,
+	notDeepStrictEqual as notDeepEqual,
+	notStrictEqual,
+	ok,
+	strictEqual,
+	throws
+} from "assert";
 
-// mixin the guys that we like
-export const doesNotThrow = assert.doesNotThrow;
-export const ifError = assert.ifError;
-export const notDeepEqual = assert.notDeepEqual;
-export const notStrictEqual = assert.notStrictEqual;
-export const ok = assert.ok;
-export const strictEqual = assert.strictEqual;
-export const throws = assert.throws;
 
 
 /**

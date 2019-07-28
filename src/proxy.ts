@@ -1,3 +1,5 @@
+import {SinonSpy} from "sinon";
+
 /**
  * Date: 05/27/18
  * Time: 5:45 PM
@@ -9,25 +11,21 @@ const sinon = require("sinon");
 const assert = require("./assert");
 
 interface ObjectProperty {
-	count: number,
-	name: string,
-	object: object
-	value: any
-}
-
-interface Stubbed extends Function {
-	restore: Function
+	count:number,
+	name:string,
+	object:{[index:string]:any},
+	value:any
 }
 
 
-let _stubs: Stubbed[] = [];
-const _props: ObjectProperty[] = [];
+let _stubs:SinonSpy[] = [];
+const _props:ObjectProperty[] = [];
 
 /**
  * Spies on the specified method and at the same time adds him to our collection of stubs
  * accumulated since the last call to unstub()
  */
-export function spy(object: object, method: string): Stubbed {
+export function spy(object:{[index:string]:any}, method:string):SinonSpy {
 	// unstub him if he's already being spied on.
 	unstub([object[method]]);
 	const spy = sinon.spy(object, method);
@@ -39,7 +37,7 @@ export function spy(object: object, method: string): Stubbed {
  * Stubs this method and at the same time adds him to our collection of stubs
  * accumulated since the last call to unstub()
  */
-export function stub(object: object, method: string, handler: Function): Stubbed {
+export function stub(object:{[index:string]:any}, method:string, handler:Function):SinonSpy {
 	// we are not fancy. If he's already stubbed then get rid of it.
 	unstub([object[method]]);
 	const stub = sinon.stub(object, method).callsFake(handler);
@@ -51,8 +49,8 @@ export function stub(object: object, method: string, handler: Function): Stubbed
  * Does everything <code>stub</code> does but wraps the handler in a try catch so that exceptions
  * work their way back to the callback method that should be the last param in <param>handler<param>
  */
-export function stubCallback(object: object, method: string, handler: Function): Stubbed {
-	return stub(object, method, (...args: any[]) => {
+export function stubCallback(object:{[index:string]:any}, method:string, handler:Function):SinonSpy {
+	return stub(object, method, (...args:any[]) => {
 		try {
 			handler(...args);
 		} catch(error) {
@@ -64,7 +62,7 @@ export function stubCallback(object: object, method: string, handler: Function):
 /**
  * Stubs the Date constructor.
  */
-export function stubDate(value: Date|string = new Date("2000-01-01T00:00:00.000Z")): Stubbed {
+export function stubDate(value:Date|string = new Date("2000-01-01T00:00:00.000Z")):SinonSpy {
 	if(_.isString(value)) {
 		value = new Date(value);
 	}
@@ -77,7 +75,7 @@ export function stubDate(value: Date|string = new Date("2000-01-01T00:00:00.000Z
  * Unstub methods in functions if they are stubbed.  Defaults to unstub all
  * methods currently being tracked by methods stubbed with stub
  */
-export function unstub(functions?: Stubbed[]) {
+export function unstub(functions?:SinonSpy[]) {
 	if(functions == null) {
 		functions = _stubs;
 		_stubs = [];
@@ -92,8 +90,8 @@ export function unstub(functions?: Stubbed[]) {
 /**
  * Sets value for object[name] and retains the original value
  */
-export function setProperty(object: object, name: string, value: any) {
-	let instance = _.find(_props, (instance: ObjectProperty) => {
+export function setProperty(object:{[index:string]:any}, name:string, value:any) {
+	let instance = _.find(_props, (instance:ObjectProperty) => {
 		return instance.object === object && instance.name === name;
 	});
 	if(instance === undefined) {
@@ -112,13 +110,13 @@ export function setProperty(object: object, name: string, value: any) {
 /**
  * Restores original value if ref count is 0
  */
-export function restoreProperty(object: object, name: string) {
-	const index = _.findIndex(_props, (instance: ObjectProperty) => {
+export function restoreProperty(object:{[index:string]:any}, name:string) {
+	const index = _.findIndex(_props, (instance:ObjectProperty) => {
 		return instance.object === object && instance.name === name;
 	});
 	assert.notStrictEqual(index, -1);
 	const instance = _props[index];
-	assert.true(instance.count > 0);
+	assert.truthy(instance.count > 0);
 	if(--instance.count === 0) {
 		if(instance.value === undefined) {
 			delete object[instance.name];

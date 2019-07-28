@@ -4,7 +4,6 @@
  * @license MIT (see project's LICENSE file)
  */
 
-module.exports = {
-	assert: require("./assert"),
-	proxy: require("./proxy")
-};
+
+export * from "./assert";
+export * from "./proxy";
