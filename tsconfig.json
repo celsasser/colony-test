@@ -1,12 +1,23 @@
 {
 	"compilerOptions": {
-		/* Allow javascript files to be compiled. */
-		"declaration": true,					 /* Generates corresponding '.d.ts' file. */
+		/* Generates corresponding '.d.ts' file. */
+		"declaration": true,
+		/* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
 		"module": "commonjs",
-		"outDir": "./dist",						 /* Redirect output structure to the directory. */
-		"noUnusedLocals": true,					 /* Report errors on unused locals. */
+		/* Redirect output structure to the directory. */
+		"outDir": "./dist",
+		/* Do not generate javascript on errors. */
+		"noEmitOnError": true,
+		/* Raise error on expressions and declarations with an implied 'any' type. */
+		"noImplicitAny": true,
+		/* Report error when not all code paths in function return a value. */
+		"noImplicitReturns": true,
+		/* Report errors on unused locals. */
+		"noUnusedLocals": true,
 		"strict": true,
-		"strictNullChecks": true,				 /* Enable strict null checks. */
+		/* Enable strict null checks. */
+		"strictNullChecks": true,
+		/* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
 		"target": "es2018"
 		// "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
 		// "allowUmdGlobalAccess": true,          /* Allow accessing UMD globals from modules. */
@@ -26,10 +37,7 @@
 		// "lib": [],                             /* Specify library files to be included in the compilation. */
 		// "mapRoot": "",                         /* Specify the location where debugger should locate map files instead of generated locations. */
 		// "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-		// "noEmit": true,                        /* Do not emit outputs. */
 		// "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
-		// "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
-		// "noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
 		// "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
 		// "noUnusedParameters": true,            /* Report errors on unused parameters. */
 		// "outFile": "./",                       /* Concatenate and emit output to single file. */
