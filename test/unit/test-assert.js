@@ -5,7 +5,7 @@
  */
 
 const assertNode=require("assert");
-const assertColony=require("../../lib/assert");
+const assertColony=require("../../dist/assert");
 
 describe("assert", function() {
 	describe("deepEqual", function() {
@@ -49,29 +49,14 @@ describe("assert", function() {
 	describe("false", function() {
 		it("should not throw exception if false is false", function() {
 			assertNode.doesNotThrow(
-				assertColony.false.bind(null, false)
+				assertColony.falsey.bind(null, false)
 			);
 		});
 
 		it("should throw exception if false is true", function() {
 			assertNode.throws(
-				assertColony.false.bind(null, true)
+				assertColony.falsey.bind(null, true)
 			);
-		});
-	});
-
-	describe("immutable", function() {
-		it("should not throw exception if object has not changed", function() {
-			const object={},
-				assert=assertColony.immutable(object);
-			assertNode.doesNotThrow(assert);
-		});
-
-		it("should throw exception if object has changed", function() {
-			const object={},
-				assert=assertColony.immutable(object);
-			object.a="edit";
-			assertNode.throws(assert);
 		});
 	});
 
@@ -120,13 +105,13 @@ describe("assert", function() {
 	describe("true", function() {
 		it("should not throw exception if true is true", function() {
 			assertNode.doesNotThrow(
-				assertColony.true.bind(null, true)
+				assertColony.truthy.bind(null, true)
 			);
 		});
 
 		it("should throw exception if true is false", function() {
 			assertNode.throws(
-				assertColony.true.bind(null, false)
+				assertColony.truthy.bind(null, false)
 			);
 		});
 	});
