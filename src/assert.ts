@@ -6,10 +6,8 @@
 
 import * as _ from "lodash";
 import * as assert from "assert";
+import {immutable, type} from "colony-core";
 
-// todo: convert to imports once colony-core is converted
-const mutation = require("colony-core").mutation.immutable;
-const type = require("colony-core").type;
 
 export {
 	doesNotThrow,
@@ -20,7 +18,6 @@ export {
 	strictEqual,
 	throws
 } from "assert";
-
 
 
 /**
@@ -36,14 +33,14 @@ export function deepEqual(actual: any, expected: any, {
 } = {}): void {
 	try {
 		if(scrub && _.isPlainObject(actual)) {
-			actual = mutation.object.scrub(actual);
-			expected = mutation.object.scrub(expected);
+			actual = immutable.object.scrub(actual);
+			expected = immutable.object.scrub(expected);
 		}
 		assert.deepStrictEqual(actual, expected, message);
 	} catch(error) {
 		if(_.isPlainObject(actual)) {
-			actual = mutation.object.sort(actual);
-			expected = mutation.object.sort(expected);
+			actual = immutable.object.sort(actual);
+			expected = immutable.object.sort(expected);
 		}
 		const actualJSON = JSON.stringify(actual, null, "\t"),
 			expectedJSON = JSON.stringify(expected, null, "\t");
@@ -65,23 +62,6 @@ export function fail(error: Error): void {
  */
 export function falsey(condition: any, message?: string): void {
 	return assert.ok(Boolean(condition) === false, message);
-}
-
-/**
- * Will assert (to log) that all objects passed as params remain unchanged.
- * @throws {Error}
- */
-export function immutable(...objects: object[]): () => void {
-	const clones = _.map(objects, (object) => [_.cloneDeep(object), object]);
-	return function() {
-		clones.forEach(function(pair) {
-			if(!_.isEqual(pair[0], pair[1])) {
-				const expected = JSON.stringify(pair[0], null, "\t"),
-					actual = JSON.stringify(pair[1], null, "\t");
-				throw new Error(`assert.immutable() failed:\nexpected=${expected}\nactual=${actual}`);
-			}
-		});
-	};
 }
 
 /**

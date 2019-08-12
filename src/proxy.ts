@@ -1,29 +1,32 @@
-import {SinonSpy} from "sinon";
-
 /**
  * Date: 05/27/18
  * Time: 5:45 PM
  * @license MIT (see project's LICENSE file)
  */
 
-const _ = require("lodash");
-const sinon = require("sinon");
-const assert = require("./assert");
+import * as _ from "lodash";
+import * as sinon from "sinon";
+import * as assert from "./assert";
 
-type ObjectProperty = {
-	name:string,
-	object:{[index:string]:any},
-	values:any[]
+interface ObjectProperty {
+	name: string,
+	object: {[index: string]: any},
+	values: any[]
 }
 
-let _stubs:SinonSpy[] = [];
-const _props:ObjectProperty[] = [];
+interface StubInstance {
+	restore(): void;
+}
+
+
+let _stubs: StubInstance[] = [];
+const _props: ObjectProperty[] = [];
 
 /**
  * Spies on the specified method and at the same time adds him to our collection of stubs
  * accumulated since the last call to unstub()
  */
-export function spy(object:{[index:string]:any}, method:string):SinonSpy {
+export function spy(object: {[index: string]: any}, method: string): sinon.SinonSpy {
 	// unstub him if he's already being spied on.
 	unstub([object[method]]);
 	const spy = sinon.spy(object, method);
@@ -35,7 +38,7 @@ export function spy(object:{[index:string]:any}, method:string):SinonSpy {
  * Stubs this method and at the same time adds him to our collection of stubs
  * accumulated since the last call to unstub()
  */
-export function stub(object:{[index:string]:any}, method:string, handler:Function):SinonSpy {
+export function stub(object: {[index: string]: any}, method: string, handler: (...args: any[]) => any): sinon.SinonSpy {
 	// we are not fancy. If he's already stubbed then get rid of it.
 	unstub([object[method]]);
 	const stub = sinon.stub(object, method).callsFake(handler);
@@ -47,8 +50,8 @@ export function stub(object:{[index:string]:any}, method:string, handler:Functio
  * Does everything <code>stub</code> does but wraps the handler in a try catch so that exceptions
  * work their way back to the callback method that should be the last param in <param>handler<param>
  */
-export function stubCallback(object:{[index:string]:any}, method:string, handler:Function):SinonSpy {
-	return stub(object, method, (...args:any[]) => {
+export function stubCallback(object: {[index: string]: any}, method: string, handler: (...args: any[]) => any): sinon.SinonSpy {
+	return stub(object, method, (...args: any[]) => {
 		try {
 			handler(...args);
 		} catch(error) {
@@ -60,7 +63,7 @@ export function stubCallback(object:{[index:string]:any}, method:string, handler
 /**
  * Stubs the Date constructor.
  */
-export function stubDate(value:Date|string = new Date("2000-01-01T00:00:00.000Z")):SinonSpy {
+export function stubDate(value: Date|string = new Date("2000-01-01T00:00:00.000Z")): sinon.SinonFakeTimers {
 	if(_.isString(value)) {
 		value = new Date(value);
 	}
@@ -73,7 +76,7 @@ export function stubDate(value:Date|string = new Date("2000-01-01T00:00:00.000Z"
  * Unstub methods in functions if they are stubbed.  Defaults to unstub all
  * methods currently being tracked by methods stubbed with stub
  */
-export function unstub(functions?:SinonSpy[]) {
+export function unstub(functions?: StubInstance[]) {
 	if(functions == null) {
 		functions = _stubs;
 		_stubs = [];
@@ -88,8 +91,8 @@ export function unstub(functions?:SinonSpy[]) {
 /**
  * Sets value for object[name] and retains the previous value
  */
-export function setProperty(object:{[index:string]:any}, name:string, value:any) {
-	let instance:ObjectProperty = _.find(_props, (instance:ObjectProperty) => {
+export function setProperty(object: {[index: string]: any}, name: string, value: any) {
+	let instance: ObjectProperty|undefined = _.find(_props, (instance: ObjectProperty) => {
 		return instance.object === object && instance.name === name;
 	});
 	if(instance === undefined) {
@@ -107,8 +110,8 @@ export function setProperty(object:{[index:string]:any}, name:string, value:any)
 /**
  * Restores the previous version
  */
-export function restoreProperty(object:{[index:string]:any}, name:string) {
-	const index = _.findIndex(_props, (instance:ObjectProperty) => {
+export function restoreProperty(object: {[index: string]: any}, name: string) {
+	const index = _.findIndex(_props, (instance: ObjectProperty) => {
 		return instance.object === object && instance.name === name;
 	});
 	assert.notStrictEqual(index, -1);

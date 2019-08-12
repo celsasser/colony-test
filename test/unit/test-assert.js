@@ -60,21 +60,6 @@ describe("assert", function() {
 		});
 	});
 
-	describe("immutable", function() {
-		it("should not throw exception if object has not changed", function() {
-			const object={},
-				assert=assertColony.immutable(object);
-			assertNode.doesNotThrow(assert);
-		});
-
-		it("should throw exception if object has changed", function() {
-			const object={},
-				assert=assertColony.immutable(object);
-			object.a="edit";
-			assertNode.throws(assert);
-		});
-	});
-
 	describe("isError", function() {
 		it("should not throw exception if param is an error", function() {
 			assertNode.doesNotThrow(
