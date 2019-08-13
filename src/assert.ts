@@ -6,7 +6,10 @@
 
 import * as _ from "lodash";
 import * as assert from "assert";
-import {immutable, type} from "colony-core";
+import {
+	immutable,
+	type
+} from "colony-core";
 
 
 export {

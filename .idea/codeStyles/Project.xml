@@ -7,25 +7,26 @@
     </option>
     <option name="RIGHT_MARGIN" value="160" />
     <HTMLCodeStyleSettings>
-      <option name="HTML_KEEP_BLANK_LINES" value="1" />
       <option name="HTML_ALIGN_ATTRIBUTES" value="false" />
-      <option name="HTML_DO_NOT_INDENT_CHILDREN_OF" value="html,thead,tbody,tfoot" />
     </HTMLCodeStyleSettings>
     <JSCodeStyleSettings version="0">
-      <option name="FORCE_SEMICOLON_STYLE" value="true" />
       <option name="SPACE_BEFORE_FUNCTION_LEFT_PARENTH" value="false" />
-      <option name="FORCE_QUOTE_STYlE" value="true" />
       <option name="ENFORCE_TRAILING_COMMA" value="Remove" />
       <option name="JSX_ATTRIBUTE_VALUE" value="None" />
       <option name="SPACE_AROUND_ARROW_FUNCTION_OPERATOR" value="false" />
       <option name="SPACE_BEFORE_ASYNC_ARROW_LPAREN" value="false" />
       <option name="IMPORT_SORT_MODULE_NAME" value="true" />
     </JSCodeStyleSettings>
-    <TypeScriptCodeStyleSettings version="1">
+    <TypeScriptCodeStyleSettings version="0">
       <option name="SPACE_BEFORE_FUNCTION_LEFT_PARENTH" value="false" />
+      <option name="ENFORCE_TRAILING_COMMA" value="Remove" />
+      <option name="IMPORTS_WRAP" value="2" />
       <option name="SPACES_WITHIN_UNION_TYPES" value="false" />
       <option name="SPACES_WITHIN_OBJECT_TYPE_BRACES" value="false" />
     </TypeScriptCodeStyleSettings>
+    <XML>
+      <option name="XML_ALIGN_ATTRIBUTES" value="false" />
+    </XML>
     <codeStyleSettings language="CSS">
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
@@ -55,6 +56,7 @@
       <option name="BLANK_LINES_AROUND_METHOD" value="0" />
       <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
       <option name="SPACE_AROUND_ASSIGNMENT_OPERATORS" value="false" />
+      <option name="SPACE_AROUND_LOGICAL_OPERATORS" value="false" />
       <option name="SPACE_AROUND_EQUALITY_OPERATORS" value="false" />
       <option name="SPACE_AROUND_RELATIONAL_OPERATORS" value="false" />
       <option name="SPACE_AROUND_BITWISE_OPERATORS" value="false" />
@@ -66,12 +68,10 @@
       <option name="SPACE_BEFORE_FOR_PARENTHESES" value="false" />
       <option name="SPACE_BEFORE_CATCH_PARENTHESES" value="false" />
       <option name="SPACE_BEFORE_SWITCH_PARENTHESES" value="false" />
-      <option name="METHOD_CALL_CHAIN_WRAP" value="5" />
       <option name="TERNARY_OPERATION_SIGNS_ON_NEXT_LINE" value="true" />
-      <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
       <option name="KEEP_SIMPLE_METHODS_IN_ONE_LINE" value="true" />
-      <option name="ARRAY_INITIALIZER_WRAP" value="5" />
-      <option name="WRAP_COMMENTS" value="true" />
+      <option name="ARRAY_INITIALIZER_LBRACE_ON_NEXT_LINE" value="true" />
+      <option name="ARRAY_INITIALIZER_RBRACE_ON_NEXT_LINE" value="true" />
       <option name="IF_BRACE_FORCE" value="3" />
       <option name="DOWHILE_BRACE_FORCE" value="3" />
       <option name="WHILE_BRACE_FORCE" value="3" />
@@ -87,32 +87,17 @@
         <option name="USE_TAB_CHARACTER" value="true" />
       </indentOptions>
     </codeStyleSettings>
-    <codeStyleSettings language="SASS">
-      <indentOptions>
-        <option name="INDENT_SIZE" value="4" />
-        <option name="CONTINUATION_INDENT_SIZE" value="4" />
-        <option name="USE_TAB_CHARACTER" value="true" />
-      </indentOptions>
-    </codeStyleSettings>
-    <codeStyleSettings language="SCSS">
-      <indentOptions>
-        <option name="INDENT_SIZE" value="4" />
-        <option name="CONTINUATION_INDENT_SIZE" value="4" />
-        <option name="USE_TAB_CHARACTER" value="true" />
-      </indentOptions>
-    </codeStyleSettings>
     <codeStyleSettings language="TypeScript">
-      <option name="RIGHT_MARGIN" value="160" />
       <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
-      <option name="ALIGN_MULTILINE_FOR" value="false" />
       <option name="SPACE_BEFORE_IF_PARENTHESES" value="false" />
       <option name="SPACE_BEFORE_WHILE_PARENTHESES" value="false" />
       <option name="SPACE_BEFORE_FOR_PARENTHESES" value="false" />
       <option name="SPACE_BEFORE_CATCH_PARENTHESES" value="false" />
       <option name="SPACE_BEFORE_SWITCH_PARENTHESES" value="false" />
-      <option name="TERNARY_OPERATION_WRAP" value="2" />
-      <option name="TERNARY_OPERATION_SIGNS_ON_NEXT_LINE" value="true" />
+      <option name="METHOD_CALL_CHAIN_WRAP" value="5" />
       <option name="ARRAY_INITIALIZER_WRAP" value="5" />
+      <option name="ARRAY_INITIALIZER_LBRACE_ON_NEXT_LINE" value="true" />
+      <option name="ARRAY_INITIALIZER_RBRACE_ON_NEXT_LINE" value="true" />
       <option name="IF_BRACE_FORCE" value="3" />
       <option name="DOWHILE_BRACE_FORCE" value="3" />
       <option name="WHILE_BRACE_FORCE" value="3" />
@@ -123,9 +108,7 @@
     </codeStyleSettings>
     <codeStyleSettings language="XML">
       <indentOptions>
-        <option name="INDENT_SIZE" value="3" />
-        <option name="CONTINUATION_INDENT_SIZE" value="3" />
-        <option name="TAB_SIZE" value="3" />
+        <option name="CONTINUATION_INDENT_SIZE" value="4" />
         <option name="USE_TAB_CHARACTER" value="true" />
       </indentOptions>
     </codeStyleSettings>
