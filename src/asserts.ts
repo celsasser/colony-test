@@ -2,6 +2,8 @@
  * Date: 3/5/2019
  * Time: 9:10 PM
  * @license MIT (see project's LICENSE file)
+ *
+ * note: we are intentionally naming "asserts" to avoid type collisions with node's assert
  */
 
 import * as _ from "lodash";
@@ -11,17 +13,13 @@ import {
 	type
 } from "colony-core";
 
-
-export {
-	doesNotThrow,
-	ifError,
-	notDeepStrictEqual as notDeepEqual,
-	notStrictEqual,
-	ok,
-	strictEqual,
-	throws
-} from "assert";
-
+export const doesNotThrow = assert.doesNotThrow;
+export const ifError = assert.ifError;
+export const notDeepEqual = assert.notDeepStrictEqual;
+export const notStrictEqual = assert.notStrictEqual;
+export const ok = assert.ok;
+export const strictEqual = assert.strictEqual;
+export const throws = assert.throws;
 
 /**
  * We print out the expected as, in here at least, we frequently want to steal it.

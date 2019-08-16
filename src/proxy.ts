@@ -6,7 +6,7 @@
 
 import * as _ from "lodash";
 import * as sinon from "sinon";
-import * as assert from "./assert";
+import * as assert from "./asserts";
 
 interface ObjectProperty {
 	name: string,

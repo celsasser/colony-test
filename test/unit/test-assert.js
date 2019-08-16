@@ -5,9 +5,9 @@
  */
 
 const assertNode=require("assert");
-const assertColony=require("../../dist/assert");
+const assertColony=require("../../dist/index").assert;
 
-describe("assert", function() {
+describe("_assert.ts", function() {
 	describe("deepEqual", function() {
 		it("should not throw an exception if objects are equal", function() {
 			const object1={a: 1},

@@ -4,7 +4,7 @@
  * @license MIT (see project's LICENSE file)
  */
 
-import * as _assert from "./assert";
+import * as _assert from "./asserts";
 import * as _proxy from "./proxy";
 
 export const assert = _assert;
