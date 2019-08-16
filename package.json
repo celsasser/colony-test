@@ -6,9 +6,9 @@
 	"main": "dist/index",
 	"name": "colony-test",
 	"readmeFilename": "README.md",
-	"version": "1.3.7",
+	"version": "1.3.8",
 	"dependencies": {
-		"colony-core": "^1.2.4",
+		"colony-core": "^1.2.5",
 		"lodash": "4.17.14"
 	},
 	"devDependencies": {
