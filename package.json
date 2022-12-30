@@ -15,7 +15,7 @@
 		"@types/lodash": "^4.14.108",
 		"@types/node": "^10.14.13",
 		"@types/sinon": "^7.0.13",
-		"mocha": "6.1.4",
+		"mocha": "10.2.0",
 		"sinon": "7.3.2",
 		"tslint": "5.18.0",
 		"typescript": "3.5.3"
